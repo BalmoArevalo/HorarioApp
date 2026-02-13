@@ -1,0 +1,285 @@
+{
+  "materias": [
+    {
+      "id": "3b9ef975-9e15-4dde-8525-d21434660d03",
+      "codigo": "ARC115",
+      "nombre": "Arquitectura de computadoras",
+      "instructor": "Ing. Boris Alexander",
+      "grupos": [
+        {
+          "tipo": "GT",
+          "numero": 1,
+          "salon": "B11",
+          "horarios": [
+            {
+              "dia": "Lunes",
+              "horaInicio": "16:50",
+              "horaFin": "18:30"
+            },
+            {
+              "dia": "Miércoles",
+              "horaInicio": "16:50",
+              "horaFin": "18:30"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 1,
+          "salon": "LCOMP4",
+          "horarios": [
+            {
+              "dia": "Martes",
+              "horaInicio": "09:50",
+              "horaFin": "11:30"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 2,
+          "salon": "LCOMP4",
+          "horarios": [
+            {
+              "dia": "Miércoles",
+              "horaInicio": "08:05",
+              "horaFin": "09:45"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 3,
+          "salon": "LCOMP4",
+          "horarios": [
+            {
+              "dia": "Viernes",
+              "horaInicio": "08:05",
+              "horaFin": "09:45"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 4,
+          "salon": "LCOMP4",
+          "horarios": [
+            {
+              "dia": "Viernes",
+              "horaInicio": "09:50",
+              "horaFin": "11:30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "42f60f25-1297-4630-90a0-d0a900972e37",
+      "codigo": "ANF115",
+      "nombre": "Analisis Financiero",
+      "instructor": "",
+      "grupos": [
+        {
+          "tipo": "GT",
+          "numero": 1,
+          "salon": "B11",
+          "horarios": [
+            {
+              "dia": "Lunes",
+              "horaInicio": "09:50",
+              "horaFin": "11:30"
+            },
+            {
+              "dia": "Miércoles",
+              "horaInicio": "09:50",
+              "horaFin": "11:30"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 1,
+          "salon": "LCOMP3",
+          "horarios": [
+            {
+              "dia": "Martes",
+              "horaInicio": "08:05",
+              "horaFin": "09:45"
+            }
+          ]
+        },
+        {
+          "tipo": "GL",
+          "numero": 2,
+          "salon": "LCOMP3",
+          "horarios": [
+            {
+              "dia": "Martes",
+              "horaInicio": "09:50",
+              "horaFin": "11:30"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "73117022-784d-4f03-949b-f71bb63cd00c",
+      "codigo": "DSI215",
+      "nombre": "Diseño de sistemas II",
+      "instructor": "Ing Karen Peñate",
+      "grupos": [
+        {
+          "tipo": "GT",
+          "numero": 1,
+          "salon": "C41",
+          "horarios": [
+            {
+              "dia": "Lunes",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            },
+            {
+              "dia": "Miércoles",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            }
+          ]
+        },
+        {
+          "tipo": "GD",
+          "numero": 1,
+          "salon": "C41",
+          "horarios": [
+            {
+              "dia": "Sábado",
+              "horaInicio": "06:20",
+              "horaFin": "08:00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "413fd2da-975e-40b7-80fd-131c0e967163",
+      "codigo": "TOO",
+      "nombre": "Tecnologia Orientada  Objetos",
+      "instructor": "Oscar Alberto Diaz",
+      "grupos": [
+        {
+          "tipo": "GT",
+          "numero": 1,
+          "salon": "C11",
+          "horarios": [
+            {
+              "dia": "Martes",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            },
+            {
+              "dia": "Viernes",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            }
+          ]
+        },
+        {
+          "tipo": "GD",
+          "numero": 1,
+          "salon": "lcomp3",
+          "horarios": [
+            {
+              "dia": "Lunes",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            }
+          ]
+        },
+        {
+          "tipo": "GD",
+          "numero": 2,
+          "salon": "lcomp3",
+          "horarios": [
+            {
+              "dia": "Jueves",
+              "horaInicio": "18:35",
+              "horaFin": "20:15"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "06d9af2f-e07d-4c7c-96f2-059cad63f2fc",
+      "codigo": "CET",
+      "nombre": "Comercio electronico",
+      "instructor": "",
+      "grupos": [
+        {
+          "tipo": "GT",
+          "numero": 1,
+          "salon": "c43",
+          "horarios": [
+            {
+              "dia": "Martes",
+              "horaInicio": "15:05",
+              "horaFin": "16:45"
+            },
+            {
+              "dia": "Viernes",
+              "horaInicio": "15:05",
+              "horaFin": "16:45"
+            }
+          ]
+        },
+        {
+          "tipo": "GD",
+          "numero": 1,
+          "salon": "lcomp3",
+          "horarios": [
+            {
+              "dia": "Miércoles",
+              "horaInicio": "15:05",
+              "horaFin": "16:45"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "seleccionMaterias": {
+    "materiaIds": [
+      "73117022-784d-4f03-949b-f71bb63cd00c",
+      "06d9af2f-e07d-4c7c-96f2-059cad63f2fc",
+      "413fd2da-975e-40b7-80fd-131c0e967163",
+      "42f60f25-1297-4630-90a0-d0a900972e37",
+      "3b9ef975-9e15-4dde-8525-d21434660d03"
+    ]
+  },
+  "seleccionGrupos": {
+    "3b9ef975-9e15-4dde-8525-d21434660d03": {
+      "GT": 1,
+      "GL": 1
+    },
+    "42f60f25-1297-4630-90a0-d0a900972e37": {
+      "GT": 1,
+      "GL": 1
+    },
+    "73117022-784d-4f03-949b-f71bb63cd00c": {
+      "GT": 1,
+      "GD": 1
+    },
+    "413fd2da-975e-40b7-80fd-131c0e967163": {
+      "GT": 1,
+      "GD": 2
+    },
+    "06d9af2f-e07d-4c7c-96f2-059cad63f2fc": {
+      "GT": 1,
+      "GD": 1
+    }
+  },
+  "config": {
+    "primeraHora": "06:20",
+    "duracionMin": 100,
+    "descansoMin": 5
+  }
+}
