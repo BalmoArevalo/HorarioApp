@@ -43,12 +43,20 @@ export function ContextBreadcrumb() {
 
       if (cancelled) return;
 
-      const nested = data?.carreras as
-        | { nombre: string; universidades: { nombre: string } | null }
-        | null;
+      type CarreraRow = {
+        nombre: string;
+        universidades: { nombre: string } | { nombre: string }[] | null;
+      };
+      const raw = data?.carreras as CarreraRow | CarreraRow[] | null | undefined;
+      const nested = Array.isArray(raw) ? raw[0] ?? null : raw ?? null;
+      const universidadNombre =
+        nested?.universidades &&
+        (Array.isArray(nested.universidades)
+          ? nested.universidades[0]?.nombre
+          : nested.universidades.nombre);
       if (nested?.nombre) {
         setContext({
-          universidad: nested.universidades?.nombre ?? "Universidad",
+          universidad: universidadNombre ?? "Universidad",
           carrera: nested.nombre,
         });
       } else {
