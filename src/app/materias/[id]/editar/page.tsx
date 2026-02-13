@@ -5,14 +5,23 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getMaterias, setMaterias } from "@/lib/storage";
 import type { Materia } from "@/types/horario";
+import { useAuth } from "@/contexts/AuthContext";
 import { MateriaForm } from "@/components/forms/MateriaForm";
 
 export default function EditarMateriaPage() {
   const router = useRouter();
   const params = useParams();
+  const { isAnonymous } = useAuth();
   const id = params.id as string;
   const [materia, setMateria] = useState<Materia | null>(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (isAnonymous) {
+      router.replace("/materias");
+      return;
+    }
+  }, [isAnonymous, router]);
 
   useEffect(() => {
     getMaterias().then((list) => {

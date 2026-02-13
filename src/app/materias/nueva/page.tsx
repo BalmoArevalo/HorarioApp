@@ -1,13 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getMaterias, setMaterias } from "@/lib/storage";
 import type { Materia } from "@/types/horario";
+import { useAuth } from "@/contexts/AuthContext";
 import { MateriaForm } from "@/components/forms/MateriaForm";
 
 export default function NuevaMateriaPage() {
   const router = useRouter();
+  const { isAnonymous } = useAuth();
+
+  useEffect(() => {
+    if (isAnonymous) router.replace("/materias");
+  }, [isAnonymous, router]);
 
   async function onSubmit(m: Materia) {
     const list = await getMaterias();

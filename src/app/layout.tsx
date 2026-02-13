@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ScheduleConfigProvider } from "@/components/ScheduleConfigProvider";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { AuthGuard } from "@/components/AuthGuard";
+import { ContextBreadcrumb } from "@/components/ContextBreadcrumb";
 
 export const metadata: Metadata = {
   title: "Horario Universitario",
@@ -15,7 +18,14 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <ScheduleConfigProvider>{children}</ScheduleConfigProvider>
+        <ScheduleConfigProvider>
+          <AuthProvider>
+            <AuthGuard>
+            <ContextBreadcrumb />
+            {children}
+          </AuthGuard>
+          </AuthProvider>
+        </ScheduleConfigProvider>
       </body>
     </html>
   );

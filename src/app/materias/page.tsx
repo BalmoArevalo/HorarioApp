@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { getMaterias, setMaterias } from "@/lib/storage";
 import type { Materia } from "@/types/horario";
+import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -30,6 +31,7 @@ function parseMateriasFromJson(json: string): Materia[] {
 }
 
 export default function MateriasPage() {
+  const { isAnonymous } = useAuth();
   const [materias, setMateriasState] = useState<Materia[]>([]);
   const [loading, setLoading] = useState(true);
   const [importMessage, setImportMessage] = useState<string | null>(null);
@@ -106,34 +108,48 @@ export default function MateriasPage() {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">Materias</h1>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={handleExport} disabled={loading || materias.length === 0}>
-            <Download className="size-4" />
-            Exportar
-          </Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => fileInputRef.current?.click()}
-            disabled={loading}
+            onClick={handleExport}
+            disabled={loading || materias.length === 0}
+            title="Descarga la lista de materias en un archivo JSON (respaldo o para compartir)."
           >
-            <Upload className="size-4" />
-            Importar
+            <Download className="size-4" />
+            Exportar
           </Button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept=".json,application/json"
-            className="hidden"
-            onChange={handleImport}
-          />
-          <Button asChild>
-            <Link href="/materias/nueva">
-              <Plus className="size-4" />
-              Nueva materia
-            </Link>
-          </Button>
+          {!isAnonymous && (
+            <>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => fileInputRef.current?.click()}
+                disabled={loading}
+                title="Sube un archivo JSON y fusiona con tu lista (actualiza por código, añade nuevas)."
+              >
+                <Upload className="size-4" />
+                Importar
+              </Button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept=".json,application/json"
+                className="hidden"
+                onChange={handleImport}
+              />
+              <Button asChild>
+                <Link href="/materias/nueva">
+                  <Plus className="size-4" />
+                  Nueva materia
+                </Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
+      <p className="mb-4 text-xs text-muted-foreground">
+        Exportar: descarga la lista en JSON. Importar: sube un JSON y fusiona con tu lista (solo con sesión).
+      </p>
 
       {importMessage && (
         <p className="mb-4 text-sm text-muted-foreground">{importMessage}</p>
@@ -148,22 +164,27 @@ export default function MateriasPage() {
       ) : materias.length === 0 ? (
         <Card>
           <CardContent className="py-12 text-center text-muted-foreground">
-            No hay materias registradas.{" "}
-            <Link href="/materias/nueva" className="text-primary underline">
-              Agregar la primera
-            </Link>
-            .
+            No hay materias registradas.
+            {!isAnonymous && (
+              <>
+                {" "}
+                <Link href="/materias/nueva" className="text-primary underline">
+                  Agregar la primera
+                </Link>
+                .
+              </>
+            )}
           </CardContent>
         </Card>
       ) : (
         <Card>
           <Table>
             <TableHeader>
-              <TableRow>
+                <TableRow>
                 <TableHead>Código</TableHead>
                 <TableHead>Nombre</TableHead>
                 <TableHead>Instructor</TableHead>
-                <TableHead className="w-[120px]">Acciones</TableHead>
+                {!isAnonymous && <TableHead className="w-[120px]">Acciones</TableHead>}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -172,22 +193,24 @@ export default function MateriasPage() {
                   <TableCell className="font-medium">{m.codigo}</TableCell>
                   <TableCell>{m.nombre}</TableCell>
                   <TableCell>{m.instructor}</TableCell>
-                  <TableCell>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" asChild>
-                        <Link href={`/materias/${m.id}/editar`}>
-                          <Pencil className="size-4" />
-                        </Link>
-                      </Button>
-                      <Button
-                        variant="ghost"
-                        size="icon"
-                        onClick={() => remove(m.id)}
-                      >
-                        <Trash2 className="size-4 text-destructive" />
-                      </Button>
-                    </div>
-                  </TableCell>
+                  {!isAnonymous && (
+                    <TableCell>
+                      <div className="flex gap-2">
+                        <Button variant="ghost" size="icon" asChild>
+                          <Link href={`/materias/${m.id}/editar`}>
+                            <Pencil className="size-4" />
+                          </Link>
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => remove(m.id)}
+                        >
+                          <Trash2 className="size-4 text-destructive" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>

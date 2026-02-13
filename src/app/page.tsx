@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { HomeNav } from "@/components/HomeNav";
+import { HomeAnonymousBanner } from "@/components/HomeAnonymousBanner";
 
 export default function HomePage() {
   return (
@@ -7,6 +9,7 @@ export default function HomePage() {
       <p className="text-muted-foreground text-center max-w-md">
         Registra materias, elige las que cursarás y genera una propuesta de horario sin choques.
       </p>
+      <HomeAnonymousBanner />
       <nav className="flex flex-wrap gap-4 justify-center">
         <Link
           href="/materias"
@@ -27,6 +30,7 @@ export default function HomePage() {
           Configuración
         </Link>
       </nav>
+      <HomeNav />
     </main>
   );
 }

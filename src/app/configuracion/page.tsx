@@ -7,10 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useScheduleConfig } from "@/contexts/ScheduleConfigContext";
+import { useAuth } from "@/contexts/AuthContext";
 import { DEFAULT_CONFIG } from "@/lib/schedule-utils";
 
 export default function ConfiguracionPage() {
   const { config, timeSlots, setConfig, loading } = useScheduleConfig();
+  const { isAnonymous } = useAuth();
   const [primeraHora, setPrimeraHora] = useState(DEFAULT_CONFIG.primeraHora);
   const [duracionMin, setDuracionMin] = useState(DEFAULT_CONFIG.duracionMin);
   const [descansoMin, setDescansoMin] = useState(DEFAULT_CONFIG.descansoMin);
@@ -71,6 +73,11 @@ export default function ConfiguracionPage() {
           <p className="text-sm text-muted-foreground">
             Ajusta la hora de la primera clase, la duración de cada clase y el descanso entre clases.
             Los slots del horario se generan según estos valores. Actualiza aquí si tu universidad cambia los horarios.
+            {isAnonymous && (
+              <span className="block mt-2 text-muted-foreground">
+                Inicia sesión para modificar la configuración.
+              </span>
+            )}
           </p>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -83,6 +90,7 @@ export default function ConfiguracionPage() {
                 value={primeraHora}
                 onChange={(e) => setPrimeraHora(e.target.value)}
                 required
+                disabled={isAnonymous}
               />
               <p className="text-xs text-muted-foreground">
                 Formato 24 h (ej. 06:20, 07:00).
@@ -98,6 +106,7 @@ export default function ConfiguracionPage() {
                 step={5}
                 value={duracionMin}
                 onChange={(e) => setDuracionMin(parseInt(e.target.value, 10) || 0)}
+                disabled={isAnonymous}
               />
               <p className="text-xs text-muted-foreground">
                 Ej. 100 = 1 h 40 min. Actual: {duracionTexto}.
@@ -112,8 +121,10 @@ export default function ConfiguracionPage() {
                 max={30}
                 value={descansoMin}
                 onChange={(e) => setDescansoMin(parseInt(e.target.value, 10) || 0)}
+                disabled={isAnonymous}
               />
             </div>
+            {!isAnonymous && (
             <div className="flex items-center gap-2">
               <Button type="submit" disabled={saving}>
                 {saving ? "Guardando…" : "Guardar configuración"}
@@ -124,6 +135,7 @@ export default function ConfiguracionPage() {
                 </span>
               )}
             </div>
+            )}
           </form>
           <div className="pt-4 border-t border-border">
             <p className="text-sm text-muted-foreground">
